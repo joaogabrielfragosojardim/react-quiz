@@ -1,12 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import { RoutesIndex } from "./Routes/index";
+import "./index.css";
+
+import { QuestionNumberProvider } from "./Context/QuestionNumber";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <QuestionNumberProvider>
+      <RoutesIndex />
+    </QuestionNumberProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
-

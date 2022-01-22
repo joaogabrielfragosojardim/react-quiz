@@ -1,0 +1,63 @@
+import { Container, TextField, Box, Button } from "@mui/material";
+import { ROUTES } from "../Routes/routes";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { useQuestionNumber } from "../Context/QuestionNumber";
+import { useNavigate } from "react-router-dom";
+
+const validationSchema = yup.object({
+  questionNumber: yup
+    .number()
+    .required("Number of questions is required")
+    .min(1, "Min value is 1"),
+});
+
+export const Home = () => {
+  const { setQuestionNumber } = useQuestionNumber();
+  const navigate = useNavigate();
+
+  const formik = useFormik({
+    initialValues: {
+      questionNumber: "",
+    },
+    onSubmit: (values) => {
+      setQuestionNumber(parseInt(values.questionNumber));
+      navigate(ROUTES.START);
+    },
+    validationSchema: validationSchema,
+  });
+
+  return (
+    <>
+      <Box height={"100vh"} display={"flex"} alignItems={"center"}>
+        <Container maxWidth="md">
+          <form onSubmit={formik.handleSubmit as any}>
+            <Box>
+              <TextField
+                fullWidth
+                name="questionNumber"
+                type="number"
+                id="questionNumber"
+                label="How many questions do you want?"
+                value={formik.values.questionNumber}
+                onChange={formik.handleChange}
+                error={
+                  formik.touched.questionNumber &&
+                  Boolean(formik.errors.questionNumber)
+                }
+                helperText={
+                  formik.touched.questionNumber && formik.errors.questionNumber
+                }
+              />
+            </Box>
+            <Box mt={"20px"} textAlign={"right"}>
+              <Button variant="outlined" size="large" type="submit">
+                Answer now
+              </Button>
+            </Box>
+          </form>
+        </Container>
+      </Box>
+    </>
+  );
+};
