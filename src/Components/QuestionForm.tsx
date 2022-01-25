@@ -1,40 +1,95 @@
-import { Typography, RadioGroup, FormControlLabel, Radio } from "@mui/material";
-import React from "react";
+import {
+  Typography,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Box,
+  Container,
+  Button,
+} from "@mui/material";
+import { useState } from "react";
 import { useDecode } from "../Hooks/useDecode";
-
-interface iForm {
-  question: string;
-  answers: string[];
-}
 
 export const QuestionForm = (data: any) => {
   const decode = useDecode;
+  const [index, setIndex] = useState(0);
+
+  const handleSubmit = () => {
+    console.log(0);
+  };
+
+  const nextStep = () => {
+    index + 1 === data.data.length ? handleSubmit() : setIndex(index + 1);
+  };
+
+  const lastStep = () => {
+    setIndex(index - 1);
+  };
 
   return (
     <>
-      {data.data.map((question: iForm) => (
-        <React.Fragment key={question.question}>
-          <Typography
-            variant="h3"
-            fontSize={"20px"}
-            fontWeight={"400"}
-            gutterBottom
-            component="div"
+      <Box height={"100vh"} display={"flex"} alignItems={"center"}>
+        <Container maxWidth="md">
+          <Box
+            display={"flex"}
+            alignItems={"flex-start"}
+            flexDirection={"column"}
           >
-            {decode(question.question, "div")}
-          </Typography>
-          <RadioGroup>
-            {question.answers.map((answer) => (
-              <FormControlLabel
-                value={answer}
-                control={<Radio />}
-                label={decode(answer, "div")}
-                key={answer}
-              />
-            ))}
-          </RadioGroup>
-        </React.Fragment>
-      ))}
+            <Box
+              bgcolor={"#1976d2"}
+              width={"100%"}
+              color={"white"}
+              padding={"10px"}
+              borderRadius={"15px"}
+              marginBottom={"20px"}
+            >
+              <Typography
+                variant="h3"
+                fontSize={"20px"}
+                fontWeight={"400"}
+                component="div"
+              >{`${index + 1}/${data.data.length}`}</Typography>
+            </Box>
+
+            <Typography
+              variant="h3"
+              fontSize={"20px"}
+              fontWeight={"400"}
+              component="div"
+            >
+              {decode(data.data[index].question, "div")}
+            </Typography>
+            <Box marginBottom={"20px"}>
+              <RadioGroup>
+                {data.data[index].answers.map((answer: string) => (
+                  <FormControlLabel
+                    value={answer}
+                    control={<Radio />}
+                    label={decode(answer, "div")}
+                    key={answer}
+                  />
+                ))}
+              </RadioGroup>
+            </Box>
+            <Box
+              width={"100%"}
+              display={"flex"}
+              justifyContent={"space-between"}
+            >
+              <Button
+                variant="outlined"
+                disabled={index === 0}
+                onClick={lastStep}
+              >
+                Last
+              </Button>
+              <Button variant="contained" onClick={nextStep}>
+                {index + 1 === data.data.length ? "Submit" : "Next"}
+              </Button>
+            </Box>
+          </Box>
+        </Container>
+      </Box>
     </>
   );
 };

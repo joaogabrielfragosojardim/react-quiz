@@ -38,6 +38,7 @@ export const Quiz = () => {
         setData(response.data.results);
       })
       .catch((err) => {
+        console.log(err);
         setError(true);
       });
   }, [questionNumber, shuffle]);
@@ -45,11 +46,7 @@ export const Quiz = () => {
   if (data.length) {
     return (
       <>
-        {data.map((question: iForm) => (
-          <React.Fragment key={question.question}>
-            <QuestionForm data={data} />
-          </React.Fragment>
-        ))}
+        <QuestionForm data={data} />
       </>
     );
   } else if (error) {

@@ -16,7 +16,6 @@ export const LoadingCard = () => {
             <Typography
               variant="h5"
               component="div"
-              gutterBottom
               marginTop={"20px"}
             >
               Searching questions...

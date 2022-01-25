@@ -24,7 +24,7 @@ export const Start = () => {
         textAlign={"center"}
       >
         <Container maxWidth="md">
-          <Typography variant="h3" component="div" gutterBottom>
+          <Typography variant="h3" component="div">
             {`Do you really want to answer ${questionNumber} ${
               questionNumber > 1 ? "questions" : "question"
             }?`}

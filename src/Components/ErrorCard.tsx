@@ -22,7 +22,6 @@ export const ErrorCard = () => {
             <Typography
               variant="h5"
               component="div"
-              gutterBottom
               marginTop={"20px"}
             >
               An error has ocurred
