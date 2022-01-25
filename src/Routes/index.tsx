@@ -5,6 +5,7 @@ import { QuestionNumberProvider } from "../Context/QuestionNumber";
 
 import { Home } from "../Pages/Home";
 import { Start } from "../Pages/Start";
+import { Quiz } from "../Pages/Quiz";
 
 export const RoutesIndex = () => {
   return (
@@ -13,6 +14,7 @@ export const RoutesIndex = () => {
         <Routes>
           <Route path={ROUTES.HOME} element={<Home />} />
           <Route path={ROUTES.START} element={<Start />} />
+          <Route path={ROUTES.QUIZ} element={<Quiz />} />
         </Routes>
       </BrowserRouter>
     </QuestionNumberProvider>

@@ -8,7 +8,7 @@ export const Start = () => {
   const { questionNumber } = useQuestionNumber();
 
   const nextStep = () => {
-    navigate(ROUTES.HOME);
+    navigate(ROUTES.QUIZ);
   };
 
   const lastStep = () => {
