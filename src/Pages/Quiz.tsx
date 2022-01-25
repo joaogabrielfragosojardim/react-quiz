@@ -13,11 +13,6 @@ interface iApi {
   answers: string[];
 }
 
-interface iForm {
-  question: string;
-  answers: string[];
-}
-
 export const Quiz = () => {
   const { questionNumber } = useQuestionNumber();
   const [data, setData] = useState([]);
@@ -38,7 +33,6 @@ export const Quiz = () => {
         setData(response.data.results);
       })
       .catch((err) => {
-        console.log(err);
         setError(true);
       });
   }, [questionNumber, shuffle]);

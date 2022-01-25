@@ -10,20 +10,38 @@ import {
 import { useState } from "react";
 import { useDecode } from "../Hooks/useDecode";
 
+interface iEvent {
+  target: {
+    value: string;
+  };
+}
+
 export const QuestionForm = (data: any) => {
   const decode = useDecode;
   const [index, setIndex] = useState(0);
+  const [value, setValue] = useState("");
+  const [localStorageQuiz, setLocalStorageQuiz] = useState<Object[]>([]);
 
   const handleSubmit = () => {
-    console.log(0);
+    setLocalStorageQuiz((prev) => [...prev, data]);
+    localStorage.setItem("quiz", JSON.stringify(localStorageQuiz));
   };
 
   const nextStep = () => {
+    setValue("");
     index + 1 === data.data.length ? handleSubmit() : setIndex(index + 1);
   };
 
   const lastStep = () => {
     setIndex(index - 1);
+  };
+
+  const handleChange = (event: iEvent) => {
+    setValue(event?.target?.value);
+  };
+
+  const userAnswer = (answer: string, index: number) => {
+    data.data[index].userAnswer = answer;
   };
 
   return (
@@ -60,10 +78,16 @@ export const QuestionForm = (data: any) => {
               {decode(data.data[index].question, "div")}
             </Typography>
             <Box marginBottom={"20px"}>
-              <RadioGroup>
+              <RadioGroup
+                value={data.data[index].userAnswer || value}
+                onChange={handleChange}
+              >
                 {data.data[index].answers.map((answer: string) => (
                   <FormControlLabel
                     value={answer}
+                    onClick={() => {
+                      userAnswer(answer, index);
+                    }}
                     control={<Radio />}
                     label={decode(answer, "div")}
                     key={answer}
@@ -83,7 +107,11 @@ export const QuestionForm = (data: any) => {
               >
                 Last
               </Button>
-              <Button variant="contained" onClick={nextStep}>
+              <Button
+                variant="contained"
+                disabled={data.data[index].userAnswer === undefined}
+                onClick={nextStep}
+              >
                 {index + 1 === data.data.length ? "Submit" : "Next"}
               </Button>
             </Box>
