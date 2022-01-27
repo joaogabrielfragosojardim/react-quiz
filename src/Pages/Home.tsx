@@ -28,6 +28,10 @@ export const Home = () => {
     validationSchema: validationSchema,
   });
 
+  const lastQuiz = () => {
+    navigate(ROUTES.RELATORY);
+  };
+
   return (
     <>
       <Box height={"100vh"} display={"flex"} alignItems={"center"}>
@@ -52,7 +56,18 @@ export const Home = () => {
               />
             </Box>
             <Box mt={"20px"} textAlign={"right"}>
-              <Button variant="outlined" size="large" type="submit">
+              {localStorage.getItem("quiz") && (
+                <Button
+                  variant="outlined"
+                  size="large"
+                  type="submit"
+                  onClick={lastQuiz}
+                  sx={{ marginRight: "10px" }}
+                >
+                  See your past quiz
+                </Button>
+              )}
+              <Button variant="contained" size="large" type="submit">
                 Answer now
               </Button>
             </Box>

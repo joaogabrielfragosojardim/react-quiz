@@ -49,7 +49,7 @@ export const QuestionForm = (data: any) => {
   };
 
   const userAnswer = (answer: string, index: number) => {
-    data.data[index].userAnswer = answer;
+    data.data[index].user_answer = answer;
   };
 
   return (
@@ -87,7 +87,7 @@ export const QuestionForm = (data: any) => {
             </Typography>
             <Box marginBottom={"20px"}>
               <RadioGroup
-                value={data.data[index].userAnswer || value}
+                value={data.data[index].user_answer || value}
                 onChange={handleChange}
               >
                 {data.data[index].answers.map((answer: string) => (
@@ -117,7 +117,7 @@ export const QuestionForm = (data: any) => {
               </Button>
               <Button
                 variant="contained"
-                disabled={data.data[index].userAnswer === undefined}
+                disabled={data.data[index].user_answer === undefined}
                 onClick={nextStep}
               >
                 {index + 1 === data.data.length ? "Submit" : "Next"}
