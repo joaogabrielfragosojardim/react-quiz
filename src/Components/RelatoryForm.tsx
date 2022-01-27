@@ -18,20 +18,17 @@ interface iEvent {
   };
 }
 
-export const QuestionForm = (data: any) => {
+export const RelatoryForm = (data: any) => {
   const decode = useDecode;
   const [index, setIndex] = useState(0);
   const [value, setValue] = useState("");
+  const [localStorageQuiz, setLocalStorageQuiz] = useState<Object[]>([]);
 
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    let dataQuiz = [];
-    if (localStorage.hasOwnProperty("quiz")) {
-      dataQuiz = JSON.parse(localStorage.getItem("quiz") || "");
-    }
-    dataQuiz.push(data);
-    localStorage.setItem("quiz", JSON.stringify(dataQuiz));
+    setLocalStorageQuiz((prev) => [...prev, data]);
+    localStorage.setItem("quiz", JSON.stringify(localStorageQuiz));
     navigate(ROUTES.SEE_ANSWER);
   };
 

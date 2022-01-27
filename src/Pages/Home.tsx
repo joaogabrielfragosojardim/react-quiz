@@ -9,7 +9,8 @@ const validationSchema = yup.object({
   questionNumber: yup
     .number()
     .required("Number of questions is required")
-    .min(1, "Min value is 1"),
+    .min(1, "Min value is 1")
+    .max(50, "Max value is 50"),
 });
 
 export const Home = () => {
