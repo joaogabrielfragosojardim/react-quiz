@@ -29,7 +29,7 @@ export const Home = () => {
   });
 
   const lastQuiz = () => {
-    navigate(ROUTES.RELATORY);
+    navigate(ROUTES.PAST_QUIZZES);
   };
 
   return (
@@ -64,7 +64,7 @@ export const Home = () => {
                   onClick={lastQuiz}
                   sx={{ marginRight: "10px" }}
                 >
-                  See your past quiz
+                  See your past quizzes
                 </Button>
               )}
               <Button variant="contained" size="large" type="submit">

@@ -8,6 +8,7 @@ import { Start } from "../Pages/Start";
 import { Quiz } from "../Pages/Quiz";
 import { SeeAnswers } from "../Pages/SeeAnswers";
 import { Relatory } from "../Pages/Relatory";
+import { PastQuizzes } from "../Pages/PastQuizzes";
 
 export const RoutesIndex = () => {
   return (
@@ -19,6 +20,8 @@ export const RoutesIndex = () => {
           <Route path={ROUTES.QUIZ} element={<Quiz />} />
           <Route path={ROUTES.SEE_ANSWER} element={<SeeAnswers />} />
           <Route path={ROUTES.RELATORY} element={<Relatory />} />
+          <Route path={`${ROUTES.RELATORY}/:id`} element={<Relatory />} />
+          <Route path={ROUTES.PAST_QUIZZES} element={<PastQuizzes />} />
         </Routes>
       </BrowserRouter>
     </QuestionNumberProvider>
