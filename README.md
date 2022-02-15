@@ -5,7 +5,7 @@
 <img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/joaogabrielfragosojardim/simulador-investimentos">
 <div/>
 <br/>
-<img src="https://github.com/joaogabrielfragosojardim/simulador-investimentos/blob/master/src/assets/thumbnail.jpeg" alt="thumbnail">
+<img src="https://github.com/joaogabrielfragosojardim/react-quiz/blob/master/src/Assets/thumbnail.png" alt="thumbnail">
 
 Quiz feito em React
 
