@@ -14,6 +14,7 @@ Quiz feito em React
 * React
 * TypesCript
 * Styled Components
+* Axios
 * Context API
 * Local Storage
 
